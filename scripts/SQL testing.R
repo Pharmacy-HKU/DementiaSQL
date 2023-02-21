@@ -14,7 +14,7 @@
 ##   3. Check if we need to use dbplyr for beginner?
 
 
-source("rsqlenv.R")
+source("scripts/rsqlenv.R")
 
 
 # time costing  -----------------------------------------------------------
@@ -25,8 +25,10 @@ tc(dbGetQuery(connec,"Select * from cdars.rx where reference_key=12667677 and ac
                       and prescription_start_date > '2010-5-1';"))
 
 
+dbGetQuery(connec,
+           "SELECT table_name FROM information_schema.tables
+                   WHERE table_schema='cdars'") # obtain the tables
 dbListFields(connec, c("cdars", "cohort")) # get the column names for cohort
-
 
 
 # extract -----------------------------------------------------------------
